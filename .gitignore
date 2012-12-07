@@ -2,4 +2,4 @@ bin
 dist
 library
 .DS_Store
-documentation
+documentation/javadoc
