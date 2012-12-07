@@ -1,0 +1,90 @@
+<project name="dmxP512" default="dist">
+	
+	<property name="version" value="0.1.1"/>
+	<property name="name" value="dmxP512"/>
+	<property name="build" value="build/"/>
+    <property name="source" value="source/"/>
+	<property name="library" value="library"/>
+	<property name="dist" value="dist"/>
+	<property name="lib" value="lib"/>
+	
+    <path id="libs">
+      <fileset dir="${lib}/">
+            <include name="core.jar"/>
+        	<include name="serial.jar"/>
+      </fileset>
+    </path>
+
+    <target name="clean" description="Clean bin.">
+        <mkdir dir="${build}"/>
+    </target>
+
+    <target name="compile" depends="clean" description="compile the application">
+    	<delete dir="${build}"/>
+        <mkdir dir="${build}"/>
+        <javac srcdir="${source}" destdir="${build}" debug="true" source="1.6" target="1.6" encoding="UTF-8" deprecation="on">
+            <classpath refid="libs"/>
+        </javac>
+    </target>
+
+    <target name="package" depends="compile" description="create jar">
+        <jar jarfile="${library}/${name}.jar" basedir="${build}"/>
+    	<delete dir="${build}"/>
+	</target>
+	
+	<target name="javadoc" depends="compile" description="">
+	  <javadoc packagenames="dmxP512.*"
+	           sourcepath="source"
+	           defaultexcludes="yes"
+	           destdir="documentation/javadoc"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="dmxP512 API">
+	    <doctitle><![CDATA[<h1>dmxP512 API</h1>]]></doctitle>
+	    <tag name="todo" scope="all" description="To do:"/>
+	  	<tag name="fixme" scope="all" description="fix me:"/>
+	  	<classpath refid="libs"/>
+	  </javadoc>
+	</target>
+
+    <target name="dist" depends="package, javadoc" description="create jar">
+    	<delete dir="temp"/>
+    	
+        <mkdir dir="temp"/>
+    	<mkdir dir="temp/${name}/documentation"/>
+    	<mkdir dir="temp/${name}/library"/>
+    	<mkdir dir="temp/${name}/source/${name}"/>
+    	<mkdir dir="temp/${name}/examples"/>
+    	
+    	
+    	<copy todir="temp/${name}/documentation">
+    		<fileset dir="documentation"/>
+    	</copy>
+        <copy todir="temp/${name}/examples">
+          <fileset dir="examples"/>
+        </copy>    
+    	<copy todir="temp/${name}/source/${name}">
+    	     <fileset dir="source/${name}"/>
+    	</copy>    
+        <copy todir="temp/${name}/library/">
+          <fileset dir="library"/>
+        </copy>
+    	
+    	<delete dir="${dist}"/>
+    	<mkdir dir="${dist}"/>
+    	<zip destfile="${dist}/${name}-${version}.zip" basedir="temp/"/>
+    	<delete dir="temp"/>
+    		
+    	<copy todir="${dist}/javadoc">
+    		<fileset dir="documentation/javadoc"/>
+    	</copy>
+    	<copy todir="${dist}/">
+    		<fileset file="examples/examples.pde"/>
+    	 	<fileset file="documentation/release_notes.txt"/>
+    		<fileset file="documentation/index.html"/>
+    	 </copy>
+    	
+
+    </target>
+</project>
