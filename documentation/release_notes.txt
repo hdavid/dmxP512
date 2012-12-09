@@ -1,5 +1,7 @@
 
+version 0.1.2:
+ -update library packaging.
 version 0.1.1:
- -fix examples.
+ -fix example.
 version 0.1:
  -initial version.

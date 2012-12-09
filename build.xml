@@ -1,6 +1,6 @@
 <project name="dmxP512" default="dist">
 	
-	<property name="version" value="0.1.1"/>
+	<property name="version" value="0.1.2"/>
 	<property name="name" value="dmxP512"/>
 	<property name="build" value="build/"/>
     <property name="source" value="source/"/>
@@ -50,13 +50,12 @@
 
     <target name="dist" depends="package, javadoc" description="create jar">
     	<delete dir="temp"/>
-    	
+
         <mkdir dir="temp"/>
     	<mkdir dir="temp/${name}/documentation"/>
     	<mkdir dir="temp/${name}/library"/>
     	<mkdir dir="temp/${name}/source/${name}"/>
-    	<mkdir dir="temp/${name}/examples"/>
-    	
+    	<mkdir dir="temp/${name}/examples"/>	
     	
     	<copy todir="temp/${name}/documentation">
     		<fileset dir="documentation"/>
@@ -70,10 +69,20 @@
         <copy todir="temp/${name}/library/">
           <fileset dir="library"/>
         </copy>
-    	
+   		<copy todir="temp/${name}/">
+    		<fileset file="library.properties"/>
+    	</copy>
+
+
     	<delete dir="${dist}"/>
     	<mkdir dir="${dist}"/>
     	<zip destfile="${dist}/${name}-${version}.zip" basedir="temp/"/>
+		<zip destfile="${dist}/${name}.zip" basedir="temp/"/>
+
+   		<copy todir="dist/">
+    		<fileset file="library.properties"/>
+    	</copy>
+		<rename src="dist/library.properties" dest="dist/dmxP512.txt"/>
     	<delete dir="temp"/>
     		
     	<copy todir="${dist}/javadoc">
