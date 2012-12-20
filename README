@@ -1,10 +1,8 @@
-dmxP512 is DMX output processing library that supports both enttec DMX USB PRO and lanbox LCE.
+dmxP512 is DMX output processing library that supports both ENTTEC DMX USB Pro and LanBox LCE.
 The release notes contain version history.
-documentation can be found in api javadoc and also in basic.pde in the package.
-this project is based on the PRODMX processing library from Andres Colubri, some DMX lanbox code from the guys at imal and some UDP code part of the Processing Libraries project, for the Atelier Hypermedia, art from Aix-en-Provence.
-Download
 
-Unzip and put the extracted dmxP512 folder into the libraries folder of your processing sketches. One basic example is included in the dmxP512 folder.
-Source
+Documentation can be found in api javadoc and also in basic.pde in the package.
 
-more info : http://motscousus.com/stuff/2011-01_dmxP512/
+This project is based on the PRODMX processing library from Andres Colubri, some DMX lanbox code from the guys at imal and some UDP code part of the Processing Libraries project, for the Atelier Hypermedia, art from Aix-en-Provence.
+
+More info : http://motscousus.com/stuff/2011-01_dmxP512/
