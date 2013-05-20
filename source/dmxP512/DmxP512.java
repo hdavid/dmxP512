@@ -265,8 +265,8 @@ public class DmxP512 extends Thread {
 	 * @param channel
 	 * @param value
 	 */
-	public void set(int channel, int value){
-		set(channel,new int[]{value});
+	public boolean set(int channel, int value){
+		return(set(channel,new int[]{value}));
 	}
 
 	/**
@@ -275,10 +275,19 @@ public class DmxP512 extends Thread {
 	 * @param channel :  first channel
 	 * @param values
 	 */
-	public void set(int channel, int[] values){
+	public boolean set(int channel, int[] values){
 
 		boolean needSend = false;
-
+		for(int i=0;i<values.length;i++){
+			if(values[i]<0 || values[i]>255){
+				System.err.println("unvalid value for channel "+(channel+i)+" : "+values[i]+".");
+				return(false);
+			}
+			if(channel+i<0 || channel+i>universeSize){
+				System.err.println("channel "+(channel+i)+" with value "+values[i]+" is outside of the universe of "+universeSize+" channels.");
+				return(false);
+			}
+		}
 		for(int i=0;i<values.length;i++){
 			if(dmxProMessage!=null){
 				if(channel + 4 + i<dmxProMessage.length){
@@ -308,6 +317,7 @@ public class DmxP512 extends Thread {
 				this.sendDMXFrame();
 			}
 		}
+		return(true);
 
 	}
 
