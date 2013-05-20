@@ -1,6 +1,6 @@
 <project name="dmxP512" default="dist">
 	
-	<property name="version" value="0.1.2"/>
+	<property name="version" value="0.1.3"/>
 	<property name="name" value="dmxP512"/>
 	<property name="build" value="build/"/>
     <property name="source" value="source/"/>

@@ -1,4 +1,6 @@
 
+version 0.1.3:
+ -don't allow user to set invalid values.
 version 0.1.2:
  -update library packaging.
 version 0.1.1:
