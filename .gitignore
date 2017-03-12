@@ -3,3 +3,6 @@ dist
 library
 .DS_Store
 documentation/javadoc
+.classpath
+
+.project
